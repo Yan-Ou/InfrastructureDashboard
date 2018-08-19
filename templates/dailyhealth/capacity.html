@@ -1,0 +1,69 @@
+  {% extends 'dailyhealth/base.html' %}
+  <!-- Content Wrapper. Contains page content -->
+  {% block content_block %}
+    <section class="content-header">
+      <h1>
+        Capacity Report
+        <small>vCenters</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Capacity Report</a></li>
+        <li class="active">Capacity Report</li>
+      </ol>
+    </section>
+    
+    {% if capacities %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Hover Data Table</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>Cluster</th>
+                  <th>Hosts</th>
+                  <th>VMs</th>
+                  <th>TotalvCPU</th>
+                  <th>AllocatedvCPUs</th>
+                  <th>TotalMemoryGB</th>
+                  <th>AllocatedMemoryGB</th>
+                  <th>AvailablevCPU</th>
+                  <th>AvailableMemoryGB</th>
+                  <th>HAResCPU</th>
+                  <th>HAResMem</th>
+                </tr>
+                </thead>
+                {% for capacity in capacities %}
+                <tbody>
+                <tr>
+                  <td>{{ capacity.cluster }}</td>
+                  <td>{{ capacity.host }}</td>
+                  <td>{{ capacity.VM_count }}</td>
+                  <td>{{ capacity.CPU_total }}</td>
+                  <td>{{ capacity.CPU_allocated }}</td>
+                  <td>{{ capacity.RAM_total }}</td>
+                  <td>{{ capacity.RAM_allocated }}</td>
+                  <td>{{ capacity.CPU_available }}</td>
+                  <td>{{ capacity.RAM_available }}</td>
+                  <td>{{ capacity.CPU_reserve }}</td>
+                  <td>{{ capacity.RAM_reserve }}</td>
+                </tr>
+                </tbody>
+                {% endfor %}
+               </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+  
+      <!-- /.row -->
+    </section>
+    {% endif %}
+{% endblock %}
